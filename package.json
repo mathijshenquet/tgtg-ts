@@ -13,7 +13,7 @@
     "watch": "tsc --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mathijs Henquet <mathijs.henquet@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "typescript": "5"

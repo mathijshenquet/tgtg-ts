@@ -72,6 +72,16 @@ export namespace TgtgClient {
         access_token_lifetime?: number;
     }
 
+    /**
+     * Initialize with an email and optional session object. 
+     * 
+     * Tgtg is passwordless so users are authenticated with an email upon which
+     * the client receives credentials in the form of a session token. Whenever
+     * this happens the `didSessionChange` callback is called with the updated 
+     * session. If the session is provided the previous session is continued. 
+     * 
+     * Session management is outside of the scope of this library.
+     */
     export interface Init {
         email: string,
         session?: Session | null,
@@ -365,7 +375,7 @@ export class TgtgClient {
         longitude: number = 0.0,
         radius: number = 21,
         page_size: number = 50,
-        page: number = 0
+        page: number = 1
     ): Promise<Array<PickupItem>> {
         // if(!(1 <= page_size && page_size <= 400)){
         //     throw new TgtgAPIError("page_size must be between 1 and 400 inclusive");
