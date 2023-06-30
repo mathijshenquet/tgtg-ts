@@ -40,8 +40,8 @@ const client = new TgtgClient({
     }
 });
 
-// Sends a login email to the user and resolves once the user has authenticated
-// the client
+// Sends a login email to the user and 
+// resolves once the user has authenticated the client
 await client.authByEmail();
 ```
 
