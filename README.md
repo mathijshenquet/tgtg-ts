@@ -2,6 +2,8 @@
 
 Welcome to `tgtg-ts`, an unofficial TooGoodToGo API with extensive TypeScript typings. This project aims to provide a comprehensive and easy-to-use interface for interacting with the TooGoodToGo platform, all while leveraging the power and safety of TypeScript. 🎉🔥
 
+This project is based on [https://github.com/ahivert/tgtg-python](ahivert/tgtg-python).
+
 ## Features 🌟
 
 - Full TypeScript support: Enjoy the benefits of static typing and intelligent code completion.
