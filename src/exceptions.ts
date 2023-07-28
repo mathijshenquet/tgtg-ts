@@ -19,11 +19,15 @@ class HTTPError extends Error {
 }
 
 class FetchError extends Error {
-    public statusCode: number;
-
-    constructor(public response: Response) {
-        super(`${response.status}: ${response.statusText}`);
-        this.statusCode = response.status
+    public statusCode?: number;
+    
+    constructor(response: Response | string) {
+        if(typeof response == "string"){
+            super(response);
+        }else{
+            super(`${response.status}: ${response.statusText}`);
+            this.statusCode = response.status
+        }
     }
 }
 

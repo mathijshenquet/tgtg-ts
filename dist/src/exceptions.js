@@ -20,9 +20,13 @@ class HTTPError extends Error {
 }
 class FetchError extends Error {
     constructor(response) {
-        super(`${response.status}: ${response.statusText}`);
-        this.response = response;
-        this.statusCode = response.status;
+        if (typeof response == "string") {
+            super(response);
+        }
+        else {
+            super(`${response.status}: ${response.statusText}`);
+            this.statusCode = response.status;
+        }
     }
 }
 class TgtgLoginError extends FetchError {

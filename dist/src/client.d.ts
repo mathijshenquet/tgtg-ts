@@ -43,6 +43,16 @@ export declare namespace TgtgClient {
         device_type?: string;
         access_token_lifetime?: number;
     }
+    /**
+     * Initialize with an email and optional session object.
+     *
+     * Tgtg is passwordless so users are authenticated with an email upon which
+     * the client receives credentials in the form of a session token. Whenever
+     * this happens the `didSessionChange` callback is called with the updated
+     * session. If the session is provided the previous session is continued.
+     *
+     * Session management is outside of the scope of this library.
+     */
     interface Init {
         email: string;
         session?: Session | null;

@@ -14,9 +14,8 @@ declare class HTTPError extends Error {
     constructor(statusCode: number, message: string);
 }
 declare class FetchError extends Error {
-    response: Response;
-    statusCode: number;
-    constructor(response: Response);
+    statusCode?: number;
+    constructor(response: Response | string);
 }
 export declare class TgtgLoginError extends FetchError {
 }

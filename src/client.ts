@@ -36,8 +36,8 @@ export const DEFAULT_USER_AGENTS: string[] = [
 export const DEFAULT_ACCESS_TOKEN_LIFETIME: number = 3600 * 4; // 4 hours
 export const DEFAULT_DEVICE_TYPE: string = "ANDROID";
 
-export const POLLING_WAIT_TIME: number = 5 * 1000; // seconds
-export const MAX_POLLING_TRIES: number = 24; // 24 * POLLING_WAIT_TIME = 2 minutes
+export const POLLING_WAIT_TIME: number = 2 * 1000; // seconds
+export const MAX_POLLING_TRIES: number = 150; // 150 * POLLING_WAIT_TIME = 5 minutes
 
 function randomArray<T>(array: Array<T>): T {
     const index = Math.floor(Math.random() * array.length);
@@ -229,7 +229,7 @@ export class TgtgClient {
         if (response.status == HTTPStatus.OK) {
             const first_login_response: any = await response.json();
             if (first_login_response.state == "TERMS") {
-                throw new TgtgPollingError(
+                throw new TgtgLoginError(
                     `This email ${this.email} is not linked to a tgtg account. Please signup with this email first.`
                 );
             } else if (first_login_response["state"] == "WAIT") {

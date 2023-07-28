@@ -33,8 +33,8 @@ exports.DEFAULT_USER_AGENTS = [
 ];
 exports.DEFAULT_ACCESS_TOKEN_LIFETIME = 3600 * 4; // 4 hours
 exports.DEFAULT_DEVICE_TYPE = "ANDROID";
-exports.POLLING_WAIT_TIME = 5 * 1000; // seconds
-exports.MAX_POLLING_TRIES = 24; // 24 * POLLING_WAIT_TIME = 2 minutes
+exports.POLLING_WAIT_TIME = 2 * 1000; // seconds
+exports.MAX_POLLING_TRIES = 150; // 150 * POLLING_WAIT_TIME = 5 minutes
 function randomArray(array) {
     const index = Math.floor(Math.random() * array.length);
     return array[index];
@@ -137,7 +137,7 @@ class TgtgClient {
             if (response.status == exceptions_1.HTTPStatus.OK) {
                 const first_login_response = yield response.json();
                 if (first_login_response.state == "TERMS") {
-                    throw new exceptions_1.TgtgPollingError(`This email ${this.email} is not linked to a tgtg account. Please signup with this email first.`);
+                    throw new exceptions_1.TgtgLoginError(`This email ${this.email} is not linked to a tgtg account. Please signup with this email first.`);
                 }
                 else if (first_login_response["state"] == "WAIT") {
                     yield this.startPolling(first_login_response["polling_id"]);
@@ -244,7 +244,7 @@ class TgtgClient {
             }
         });
     }
-    getFavorites(latitude = 0.0, longitude = 0.0, radius = 21, page_size = 50, page = 0) {
+    getFavorites(latitude = 0.0, longitude = 0.0, radius = 21, page_size = 50, page = 1) {
         return __awaiter(this, void 0, void 0, function* () {
             // if(!(1 <= page_size && page_size <= 400)){
             //     throw new TgtgAPIError("page_size must be between 1 and 400 inclusive");
