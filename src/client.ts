@@ -172,7 +172,6 @@ export class TgtgClient {
 
         let url = `${this.base_url}/${path}`;
 
-        console.log("POST", url, data);
         let response = await fetch(url, init);
 
         let cookie = response.headers.get("Set-Cookie");
@@ -268,7 +267,7 @@ export class TgtgClient {
                 console.log("Logged in!");
                 const loginResponse = await response.json();
 
-                console.log("loginReponse", loginResponse);
+                // console.log("loginReponse", loginResponse);
 
                 this.auth = {
                     access_token: loginResponse.access_token,

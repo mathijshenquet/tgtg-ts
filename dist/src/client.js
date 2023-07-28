@@ -88,7 +88,6 @@ class TgtgClient {
                 init.signal = controller.signal;
             }
             let url = `${this.base_url}/${path}`;
-            console.log("POST", url, data);
             let response = yield fetch(url, init);
             let cookie = response.headers.get("Set-Cookie");
             if (cookie)
@@ -172,7 +171,7 @@ class TgtgClient {
                 else if (response.status === exceptions_1.HTTPStatus.OK) {
                     console.log("Logged in!");
                     const loginResponse = yield response.json();
-                    console.log("loginReponse", loginResponse);
+                    // console.log("loginReponse", loginResponse);
                     this.auth = {
                         access_token: loginResponse.access_token,
                         refresh_token: loginResponse.refresh_token,
